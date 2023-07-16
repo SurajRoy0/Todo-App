@@ -1,0 +1,33 @@
+.todoInput {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  width: 600px;
+  outline: none;
+}
+
+.addButton {
+  padding: 5px 8px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addButton svg {
+  font-size: 24px;
+}
+
+.addButton:hover {
+  background-color: #0056b3;
+}

@@ -1,0 +1,48 @@
+/* Todo.module.css */
+
+.todo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  color: white;
+  justify-content: space-between;
+  width: 600px;
+}
+
+.todo-details {
+  display: flex;
+  align-items: center;
+}
+
+.todo-actions {
+  display: flex;
+  align-items: center;
+}
+.checkbox {
+  margin-right: 10px;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  margin-left: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.actionButton svg {
+  width: 16px;
+  height: 16px;
+  background-color: #02d32f;
+}
+
+.actionButton:hover {
+  background-color: #3633f7;
+}
