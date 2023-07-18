@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 
 const mongoUrl = process.env.MONGODB_URL;
 
@@ -26,5 +26,28 @@ export async function GET(req, res) {
 
     client.close();
     return new Response(JSON.stringify({ result: result }));
+}
+
+export async function PUT(req, res) {
+
+    const { _id, updatedTodo } = await req.json();
+    console.log(ObjectId(_id))
+
+    const client = await MongoClient.connect(mongoUrl, {
+        serverSelectionTimeoutMS: 5000,
+    });
+
+
+    const db = client.db();
+    const todoCollection = db.collection("todos");
+
+    const result = await todoCollection.updateOne(
+        { _id: ObjectId(_id) },
+        { $set: updatedTodo }
+    );
+    console.log(result);
+
+    client.close();
+    return new Response(JSON.stringify({ message: "Todo Updated!" }));
 }
 

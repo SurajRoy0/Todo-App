@@ -4,18 +4,33 @@ import React from "react";
 import { RiEdit2Line, RiDeleteBin6Line } from "react-icons/ri";
 import styles from "./Todo.module.css";
 
-const Todo = ({ todo, onEdit, onDelete, onToggle }) => {
-  const handleEdit = () => {
-    onEdit(todo);
+const Todo = ({ todo }) => {
+  const handleToggle = async () => {
+    if (!todo.isDone) {
+      const updatedTodo = {
+        todo: todo.todo,
+        isDone: true,
+        date: new Date(),
+      };
+
+      const res = await fetch("/api/add-todo", {
+        method: "PUT",
+        body: JSON.stringify({
+          updatedTodo: updatedTodo,
+          _id: todo._id,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+    }
   };
 
-  const handleDelete = () => {
-    onDelete(todo);
-  };
+  const handleEdit = () => {};
 
-  const handleToggle = () => {
-    onToggle(todo);
-  };
+  const handleDelete = () => {};
 
   return (
     <div className={styles.todo}>

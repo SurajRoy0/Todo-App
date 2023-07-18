@@ -21,7 +21,7 @@ const AddTodo = () => {
       },
     });
     const data = await res.json();
-    myRef.current.value = "";
+    todoRef.current.value = "";
     console.log(data);
   };
 
