@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Todo from "./Todo";
 import styles from "./Todos.module.css";
-const Todos = () => {
+const Todos = ({ allTodos }) => {
   const [todos, setTodos] = useState([]);
   const todo = {
     todo: "Need to do all task related to DSA and have to submit on sharpener.",
@@ -14,11 +14,22 @@ const Todos = () => {
     setTodos(data.result);
   }, []);
   return (
-    <div className={styles.container}>
-      {todos?.map((todo) => (
-        <Todo key={todo._id} todo={todo} />
-      ))}
-    </div>
+    <>
+      {!allTodos && (
+        <div className={styles.container}>
+          {todos?.map((todo) => (
+            <Todo key={todo._id} todo={todo} />
+          ))}
+        </div>
+      )}
+      {allTodos && (
+        <div className={styles.container}>
+          {todos?.map(
+            (todo) => todo.isDone && <Todo key={todo._id} todo={todo} />
+          )}
+        </div>
+      )}
+    </>
   );
 };
 

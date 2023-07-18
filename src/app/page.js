@@ -9,7 +9,7 @@ export default function Home() {
     <main className={styles.main}>
       <AddTodo />
       <h2 className={styles.heading}>Today's Todo List</h2>
-      <Todos />
+      <Todos allTodos={false} />
     </main>
   )
 }
