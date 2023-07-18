@@ -1,19 +1,28 @@
 "use client";
-
 import React, { useRef } from "react";
 import styles from "./AddTodo.module.css";
 import { RiAddLine } from "react-icons/ri";
 
 const AddTodo = () => {
-  const totdoRef = useRef();
+  const todoRef = useRef();
 
-  const handleAddTodo = () => {
+  const handleAddTodo = async () => {
     const newTodo = {
-      todo: totdoRef.current.value,
+      todo: todoRef.current.value,
       isDone: false,
       date: new Date(),
     };
-    console.log("Adding todo:", newTodo);
+
+    const res = await fetch("/api/add-todo", {
+      method: "POST",
+      body: JSON.stringify(newTodo),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    myRef.current.value = "";
+    console.log(data);
   };
 
   return (
@@ -21,7 +30,7 @@ const AddTodo = () => {
       <input
         type="text"
         placeholder="Add a todo..."
-        ref={totdoRef}
+        ref={todoRef}
         className={styles.input}
       />
       <button onClick={handleAddTodo} className={styles.addButton}>

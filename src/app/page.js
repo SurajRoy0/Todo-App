@@ -1,10 +1,10 @@
-
-import AddTodo from '@/Components/Input/AddTodo'
+import AddTodo from '@/components/Input/AddTodo';
 import styles from './page.module.css'
-import Todos from '@/Components/Output/Todos'
+import Todos from '@/components/Output/Todos';
 
 
 export default function Home() {
+
   return (
     <main className={styles.main}>
       <AddTodo />
