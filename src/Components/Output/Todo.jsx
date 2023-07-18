@@ -5,7 +5,7 @@ import { RiEdit2Line, RiDeleteBin6Line } from "react-icons/ri";
 import styles from "./Todo.module.css";
 
 const Todo = ({ todo }) => {
-  const handleToggle = async () => {
+  const todoCompletedHandler = async () => {
     if (!todo.isDone) {
       const updatedTodo = {
         todo: todo.todo,
@@ -28,9 +28,17 @@ const Todo = ({ todo }) => {
     }
   };
 
-  const handleEdit = () => {};
-
-  const handleDelete = () => {};
+  const handleDelete = async () => {
+    const res = await fetch("/api/add-todo", {
+      method: "DELETE",
+      body: JSON.stringify({ id: todo._id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+  };
 
   return (
     <div className={styles.todo}>
@@ -38,15 +46,12 @@ const Todo = ({ todo }) => {
         <input
           type="checkbox"
           checked={todo.isDone}
-          onChange={handleToggle}
+          onChange={todoCompletedHandler}
           className={styles.checkbox}
         />
         <p className={todo.isDone ? styles.done : ""}>{todo.todo}</p>
       </div>
       <div className={styles["todo-actions"]}>
-        <button onClick={handleEdit} className={styles.actionButton}>
-          <RiEdit2Line />
-        </button>
         <button onClick={handleDelete} className={styles.actionButton}>
           <RiDeleteBin6Line />
         </button>
